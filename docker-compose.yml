@@ -1,10 +1,18 @@
 version: "3"
 
 services:
-  chirpstack-network-server:
+  chirpstack-network-server-eu:
     image: chirpstack/chirpstack-network-server:3
     volumes:
-      - ./configuration/chirpstack-network-server:/etc/chirpstack-network-server
+      - ./configuration/chirpstack-network-server-eu:/etc/chirpstack-network-server
+    depends_on:
+      - postgresql
+      - mosquitto
+
+  chirpstack-network-server-au:
+    image: chirpstack/chirpstack-network-server:3
+    volumes:
+      - ./configuration/chirpstack-network-server-au:/etc/chirpstack-network-server
     depends_on:
       - postgresql
       - mosquitto
@@ -16,7 +24,8 @@ services:
     volumes:
       - ./configuration/chirpstack-application-server:/etc/chirpstack-application-server
     depends_on:
-      - chirpstack-network-server
+      - chirpstack-network-server-eu
+      - chirpstack-network-server-au
 
   chirpstack-gateway-bridge:
     image: chirpstack/chirpstack-gateway-bridge:3
@@ -26,11 +35,6 @@ services:
       - ./configuration/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge
     depends_on: 
       - mosquitto
-
-  chirpstack-geolocation-server:
-    image: chirpstack/chirpstack-geolocation-server:3
-    volumes:
-      - ./configuration/chirpstack-geolocation-server:/etc/chirpstack-geolocation-server
 
   postgresql:
     image: postgres:9.6-alpine
