@@ -5,3 +5,7 @@
 servers=["tcp://mosquitto:1883"]
 username=""
 password=""
+
+[metrics.prometheus]
+endpoint_enabled=true
+bind="0.0.0.0:8070"

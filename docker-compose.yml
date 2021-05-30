@@ -62,7 +62,21 @@ services:
       - 1883:1883
     volumes: 
       - ./configuration/eclipse-mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+  
+  prometheus:
+    image: prom/prometheus
+    restart: always
+    ports:
+      - 9090:9090
+    volumes:
+      - prometheus-data:/prometheus
+      - ./configuration/prometheus:/etc/prometheus
+    depends_on: 
+      - chirpstack-network-server-eu
+      - chirpstack-network-server-au
+      - chirpstack-application-server
 
 volumes:
   postgresqldata:
   redisdata:
+  prometheus-data:
