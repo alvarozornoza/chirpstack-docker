@@ -45,10 +45,8 @@ name="EU868"
 
 [network_server.gateway.backend.mqtt]
 server="tcp://mosquitto:1883"
+event_topic="gateway-eu/+/event/+"
+command_topic_template="gateway-eu/{{ .GatewayID }}/command/{{ .CommandType }}"
 
 [join_server.default]
 server="http://chirpstack-application-server:8003"
-
-[network_server.gateway.backend.mqtt]
-event_topic="gateway-eu/+/event/+"
-command_topic_template="gateway-eu/{{ .GatewayID }}/command/{{ .CommandType }}"
