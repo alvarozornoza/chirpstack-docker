@@ -5,7 +5,7 @@
 # configuration examples.
 
 [postgresql]
-dsn="postgres://chirpstack_ns_au:chirpstack_ns_au@postgresql/chirpstack_ns_au?sslmode=disable"
+dsn="postgres://chirpstack_ns:chirpstack_ns@postgresql/chirpstack_ns_au?sslmode=disable"
 
 [redis]
 url="redis://redis:6379"
