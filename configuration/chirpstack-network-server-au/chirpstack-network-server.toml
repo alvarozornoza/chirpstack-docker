@@ -15,9 +15,12 @@ net_id="000001"
 
 [network_server.band]
 name="AU915"
+uplink_dwell_time_400ms=true
+downlink_dwell_time_400ms=true
+uplink_max_eirp = -1
 
-  [network_server.network_settings]
-  enabled_uplink_channels=[0, 1, 2, 3, 4, 5, 6, 7, 64]
+[network_server.network_settings]
+enabled_uplink_channels=[0, 1, 2, 3, 4, 5, 6, 7, 64]
 
 [network_server.gateway.backend.mqtt]
 server="tcp://mosquitto:1883"
